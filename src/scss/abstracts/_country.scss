@@ -1,0 +1,120 @@
+.right-column {
+  width: 72%;
+  max-width: 72%;
+  background-color: $color-light-2;
+  padding: 0 4rem 5rem 4rem;
+}
+
+.country {
+  &__header {
+    position: relative;
+    height: 30rem;
+    margin: 0 -4rem 3rem -4rem;
+
+    img {
+      @include position(absolute, 0, 0);
+      z-index: 1;
+      width: 100%;
+      height: 30rem;
+      object-fit: cover;
+    }
+
+    &-text {
+      @include flex-center(center);
+      flex-direction: column;
+      @include position(absolute, 0, 0);
+      z-index: 1;
+      background: rgba($color-dark, 0.9);
+      color: $color-light;
+      width: 100%;
+      height: 100%;
+      letter-spacing: 0.1rem;
+
+      h1 {
+        font-size: 3.6rem;
+        font-weight: 300;
+        margin-bottom: 2.5rem;
+      }
+
+      .short-info {
+        font-size: 1.8rem;
+        font-weight: 300;
+        border-radius: 2rem;
+        text-align: center;
+        padding: 2rem 3rem;
+        border: 0.1rem solid $color-light;
+
+        p:not(:last-child) {
+          margin-bottom: 0.6rem;
+        }
+      }
+    }
+  }
+
+  &__data {
+    line-height: 1.7;
+    & > *:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+
+    .data {
+      background-color: $color-light;
+      padding: 2rem;
+      text-transform: capitalize;
+
+      .small-flag {
+        width: 18rem;
+        border: 0.1rem solid #ccc;
+      }
+
+      h3 {
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      div:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+
+      &__label {
+        font-weight: 500;
+        margin-right: 0.5rem;
+      }
+
+      &__content {
+        color: $color-dark-2;
+        display: inline-block;
+
+        &:not(:last-child) {
+          margin-right: 1rem;
+        }
+      }
+
+      &__multiple {
+        display: inline-block;
+        font-weight: 400;
+        font-size: 1.4rem;
+        border-radius: 2.5rem;
+        background-color: $color-primary;
+        margin-left: 0.5rem;
+        padding: 0.7rem 1.2rem;
+        color: rgba($color-dark, 0.7);
+
+        .correct-choice {
+          color: $color-light;
+        }
+      }
+    }
+
+    .neighbours {
+      padding: 0 3rem;
+      @include flex-center(flex-start);
+      flex-wrap: wrap;
+
+      .neighbour {
+        flex: 0 0 50%;
+      }
+    }
+  }
+}

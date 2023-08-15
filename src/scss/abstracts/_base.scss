@@ -1,0 +1,59 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+textarea,
+input,
+button,
+a {
+  &:focus {
+    outline: none;
+  }
+}
+
+a {
+  text-decoration: none;
+
+  &:not([class]) {
+    text-decoration-skip-ink: auto;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  overflow-x: hidden;
+  background: $main-bg no-repeat fixed center center/cover;
+  color: $color-dark;
+
+  ::selection {
+    color: $color-light;
+    background-color: $color-primary;
+  }
+}

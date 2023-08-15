@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+$font-primary: 'Roboto', sans-serif;
+$color-primary: #737199;
+$color-primary-dark: #4d4b6d;
+$color-secondary: #e1e5f6;
+$color-light: #fff;
+$color-light-2: #f6f6f6;
+$color-dark: #000;
+$color-dark-2: #6b6b6b;
+$site-width: 120rem;
+$main-bg: url('../../img/bg.jpg');
+$gradient: linear-gradient(
+  to right bottom,
+  $color-primary,
+  $color-primary-dark
+);
+
+@mixin flex-center($justification) {
+  display: flex;
+  align-items: center;
+  justify-content: $justification;
+}
+
+@mixin transition($property, $duration) {
+  transition: $property;
+  transition-duration: $duration;
+  transition-timing-function: ease;
+}
+
+@mixin position($position, $left, $top) {
+  position: $position;
+  left: $left;
+  top: $top;
+}

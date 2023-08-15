@@ -1,0 +1,75 @@
+.container {
+  max-width: $site-width;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.btn {
+  font-family: inherit;
+  border: none;
+  text-transform: capitalize;
+  color: $color-light;
+  @include flex-center(center);
+  @include transition(all, 0.3s);
+  border-radius: 10rem;
+  letter-spacing: 0.07rem;
+}
+
+.message {
+  @include flex-center(center);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: $color-dark-2;
+  margin-top: 10rem;
+
+  svg {
+    margin-right: 1.2rem;
+    width: 3rem;
+    height: 3rem;
+    fill: $color-primary;
+  }
+}
+
+.loader {
+  margin: 10rem auto 0 auto;
+  height: 6rem;
+  width: 6rem;
+
+  svg {
+    fill: $color-primary;
+    animation: rotate 2s infinite linear;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.lower-case {
+  text-transform: lowercase;
+}
+
+.purple-light {
+  border: 0.1rem solid $color-secondary;
+}
+.purple {
+  border: 0.1rem solid $color-primary;
+}
+.purple-dark {
+  border: 0.1rem solid $color-primary-dark;
+}
+.yellow {
+  border: 0.1rem solid #dcc411;
+}
+.orange {
+  border: 0.1rem solid #ffa500;
+}
+.red {
+  border: 0.1rem solid #ed2626;
+}
