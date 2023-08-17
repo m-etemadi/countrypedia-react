@@ -55,21 +55,25 @@
   text-transform: lowercase;
 }
 
+.no-padding {
+  padding: 0 !important;
+}
+
 .purple-light {
-  border: 0.1rem solid $color-secondary;
+  border-color: $color-secondary;
 }
 .purple {
-  border: 0.1rem solid $color-primary;
+  border-color: $color-primary;
 }
 .purple-dark {
-  border: 0.1rem solid $color-primary-dark;
+  border-color: $color-primary-dark;
 }
 .yellow {
-  border: 0.1rem solid #dcc411;
+  border-color: #dcc411;
 }
 .orange {
-  border: 0.1rem solid #ffa500;
+  border-color: #ffa500;
 }
 .red {
-  border: 0.1rem solid #ed2626;
+  border-color: #ed2626;
 }

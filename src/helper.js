@@ -22,7 +22,6 @@ export function countryObj(data) {
     carSide: data?.car?.side,
     independent: data?.independent,
     unMember: data?.unMember,
-    gMap: data?.maps?.googleMaps,
     timeZones: data?.timezones,
     startOfWeek: data?.startOfWeek,
     topLevelDomain: data?.tld?.[0],
@@ -45,7 +44,7 @@ export function formatCountryName(country) {
 const timeout = function (s) {
   return new Promise(function (_, reject) {
     setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
+      reject(new Error(`Loading failed! Please try again`));
     }, s * 1000);
   });
 };

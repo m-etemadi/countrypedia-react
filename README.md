@@ -1,4 +1,4 @@
-# Country Data App using React.js
+# Countrypedia
 
 The Country Data App is a simple web application built using React.js that allows users to explore information about more than 200 countries. The app provides details such as flag, population, currency, language, and more for each selected country.
 
@@ -16,7 +16,7 @@ You can try out a live demo of the application [here](https://countrypedia-etema
 
 - React.js: A JavaScript library for building user interfaces.
 - HTML, CSS and SASS: For the basic structure and styling.
-- Exchange rate API (https://www.frankfurter.app/)
+- Country API (https://restcountries.com/)
 
 ## Installation
 

@@ -16,7 +16,8 @@
   .search {
     background-color: $color-light;
     border-radius: 10rem;
-    padding-left: 3rem;
+    padding-left: 2.5rem;
+    margin-right: 0.3rem;
     @include flex-center(space-between);
     @include transition(all, 0.3s);
 

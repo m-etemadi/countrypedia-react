@@ -1,164 +1,156 @@
 import { formatPopulation } from '../../helper';
+import LeafletMap from './LeafletMap';
 
 function Country({ selectedCountry }) {
+  const {
+    flag,
+    area,
+    continent,
+    coords,
+    officialName,
+    commonName,
+    capitalCity,
+    capitalCoords,
+    population,
+    carSide,
+    independent,
+    unMember,
+    timeZones,
+    startOfWeek,
+    topLevelDomain,
+    // neighbours,
+  } = selectedCountry;
+
   const [currency] = Object.values(selectedCountry.currency);
   const languages = Object.values(selectedCountry.languages);
-  const checkSide = selectedCountry.carSide;
+  const checkSide = carSide;
 
   return (
     <div className="country">
       <header className="country__header">
-        <img src={selectedCountry.flag} alt={selectedCountry.commonName} />
+        <img src={flag} alt={commonName} />
         <div className="country__header-text">
-          <h1>{selectedCountry.commonName}</h1>
+          <h1>{commonName}</h1>
           <div className="short-info">
-            <p>Population: {formatPopulation(selectedCountry.population)}</p>
-            <p>Capital: {selectedCountry.capitalCity}</p>
+            <p>Population: {formatPopulation(population)}</p>
+            <p>Capital: {capitalCity}</p>
           </div>
         </div>
       </header>
 
       <div className="country__data">
         <article className="data purple-light">
-          <div>
-            <img
-              className="small-flag"
-              src={selectedCountry.flag}
-              alt={selectedCountry.commonName}
-            />
+          <div className="data__row">
+            <img className="data__row-flag" src={flag} alt={commonName} />
           </div>
-          <div>
-            <span className="data__label">Continent:</span>
-            <span className="data__content">{selectedCountry.continent}</span>
+          <div className="data__row">
+            <span className="data__row-label">Continent:</span>
+            <span className="data__row-content">{continent}</span>
           </div>
-          <div>
-            <span className="data__label">Area:</span>
-            <span className="data__content">{selectedCountry.area}</span>
+          <div className="data__row">
+            <span className="data__row-label">Area:</span>
+            <span className="data__row-content">{area}</span>
           </div>
-          <div>
-            <span className="data__label">Coordination:</span>
-            <span className="data__content">
-              Latitude: {selectedCountry.coords.lat}
-            </span>
-            <span className="data__content">
-              Longitude: {selectedCountry.coords.lng}
-            </span>
+          <div className="data__row">
+            <span className="data__row-label">Coordination:</span>
+            <span className="data__row-content">Latitude: {coords.lat}</span>
+            <span className="data__row-content">Longitude: {coords.lng}</span>
           </div>
         </article>
         <article className="data purple">
-          <div>
-            <span className="data__label">Official Name:</span>
-            <span className="data__content">
-              {selectedCountry.officialName}
+          <div className="data__row">
+            <span className="data__row-label">Official Name:</span>
+            <span className="data__row-content">{officialName}</span>
+          </div>
+          <div className="data__row">
+            <span className="data__row-label">Common Name:</span>
+            <span className="data__row-content">{commonName}</span>
+          </div>
+          <div className="data__row">
+            <span className="data__row-label">Capital City:</span>
+            <span className="data__row-content">{capitalCity}</span>
+          </div>
+          <div className="data__row">
+            <span className="data__row-label">Capital Coordination:</span>
+            <span className="data__row-content">
+              Latitude: {capitalCoords.lat}
             </span>
-          </div>
-          <div>
-            <span className="data__label">Common Name:</span>
-            <span className="data__content">{selectedCountry.commonName}</span>
-          </div>
-          <div>
-            <span className="data__label">Capital City:</span>
-            <span className="data__content">{selectedCountry.capitalCity}</span>
-          </div>
-          <div>
-            <span className="data__label">Capital Coordination:</span>
-            <span className="data__content">
-              Latitude: {selectedCountry.capitalCoords.lat}
-            </span>
-            <span className="data__content">
-              Longitude: {selectedCountry.capitalCoords.lng}
+            <span className="data__row-content">
+              Longitude: {capitalCoords.lng}
             </span>
           </div>
         </article>
         <article className="data purple-dark">
-          <div>
-            <span className="data__label">Language:</span>
-            <span className="data__content">
-              {languages.map(lang => (
-                <span key={lang} className="data__content">
-                  {lang}
-                </span>
-              ))}
-            </span>
+          <div className="data__row">
+            <span className="data__row-label">Language:</span>
+            {languages.map(lang => (
+              <span key={lang} className="data__row-content">
+                {lang}
+              </span>
+            ))}
           </div>
-          <div>
-            <span className="data__label">Currency:</span>
-            <span className="data__content">
+          <div className="data__row">
+            <span className="data__row-label">Currency:</span>
+            <span className="data__row-content">
               {currency.name} ({currency.symbol})
             </span>
           </div>
-          <div>
-            <span className="data__label">Population:</span>
-            <span className="data__content">
-              {formatPopulation(selectedCountry.population)}
+          <div className="data__row">
+            <span className="data__row-label">Population:</span>
+            <span className="data__row-content">
+              {formatPopulation(population)}
             </span>
           </div>
-          <div>
-            <span className="data__label">Start of the Week:</span>
-            <span className="data__content">{selectedCountry.startOfWeek}</span>
+          <div className="data__row">
+            <span className="data__row-label">Start of the Week:</span>
+            <span className="data__row-content">{startOfWeek}</span>
           </div>
-          <div>
-            <span className="data__label">Car Side:</span>
-            <p className="data__multiple">
+          <div className="data__row">
+            <span className="data__row-label">Car Side:</span>
+            <p className="data__row-multiple">
               <span className={checkSide ? 'correct-choice' : ''}>
-                {selectedCountry.carSide}
+                {carSide}
               </span>
               &nbsp;&nbsp;&nbsp;
-              <span>
-                {selectedCountry.carSide === 'left' ? 'right' : 'left'}
-              </span>
+              <span>{carSide === 'left' ? 'right' : 'left'}</span>
             </p>
           </div>
         </article>
         <article className="data yellow">
-          <div>
-            <span className="data__label">Time Zones:</span>
-            {selectedCountry.timeZones.map(times => (
-              <span key={times} className="data__content">
+          <div className="data__row">
+            <span className="data__row-label">Time Zones:</span>
+            {timeZones.map(times => (
+              <span key={times} className="data__row-content">
                 {times}
               </span>
             ))}
           </div>
-          <div>
-            <span className="data__label">Top Level Domain:</span>
-            <span className="data__content lower-case">
-              {selectedCountry.topLevelDomain}
+          <div className="data__row">
+            <span className="data__row-label">Top Level Domain:</span>
+            <span className="data__row-content lower-case">
+              {topLevelDomain}
             </span>
           </div>
-          <div>
-            <span className="data__label">Independant</span>
-            <p className="data__multiple">
-              <span
-                className={selectedCountry.independent ? 'correct-choice' : ''}
-              >
-                Yes
-              </span>
+          <div className="data__row">
+            <span className="data__row-label">Independant</span>
+            <p className="data__row-multiple">
+              <span className={independent ? 'correct-choice' : ''}>Yes</span>
               &nbsp;&nbsp;&nbsp;
-              <span
-                className={!selectedCountry.independent ? 'correct-choice' : ''}
-              >
-                No
-              </span>
+              <span className={!independent ? 'correct-choice' : ''}>No</span>
             </p>
           </div>
-          <div>
-            <span className="data__label">UN Member</span>
-            <p className="data__multiple">
-              <span
-                className={selectedCountry.unMember ? 'correct-choice' : ''}
-              >
-                Yes
-              </span>
+          <div className="data__row">
+            <span className="data__row-label">UN Member</span>
+            <p className="data__row-multiple">
+              <span className={unMember ? 'correct-choice' : ''}>Yes</span>
               &nbsp;&nbsp;&nbsp;
-              <span
-                className={!selectedCountry.unMember ? 'correct-choice' : ''}
-              >
-                No
-              </span>
+              <span className={!unMember ? 'correct-choice' : ''}>No</span>
             </p>
           </div>
         </article>
-        {/* <article className="data orange">Google Map</article> */}
+        <article className="data orange no-padding">
+          <LeafletMap coords={coords} name={commonName} />
+        </article>
         {/* <article className="data red">
           <h3>Neighbours</h3>
           <div className=" neighbours">

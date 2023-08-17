@@ -39,7 +39,7 @@
       .short-info {
         font-size: 1.8rem;
         font-weight: 300;
-        border-radius: 2rem;
+        border-radius: 1rem;
         text-align: center;
         padding: 2rem 3rem;
         border: 0.1rem solid $color-light;
@@ -58,14 +58,11 @@
     }
 
     .data {
+      border-width: 0.1rem;
+      border-style: solid;
       background-color: $color-light;
       padding: 2rem;
       text-transform: capitalize;
-
-      .small-flag {
-        width: 18rem;
-        border: 0.1rem solid #ccc;
-      }
 
       h3 {
         font-weight: 500;
@@ -73,48 +70,59 @@
         margin-bottom: 4rem;
       }
 
-      div:not(:last-child) {
-        margin-bottom: 1.5rem;
-      }
+      &__row {
+        &-flag {
+          width: 18rem;
+          border: 0.1rem solid $color-secondary;
+        }
 
-      &__label {
-        font-weight: 500;
-        margin-right: 0.5rem;
-      }
+        &-label {
+          font-weight: 500;
+          margin-right: 0.7rem;
+        }
 
-      &__content {
-        color: $color-dark-2;
-        display: inline-block;
+        &-content {
+          display: inline-block;
+          color: $color-dark-2;
+
+          &:not(:last-child) {
+            margin-right: 1rem;
+          }
+        }
+
+        &-multiple {
+          display: inline-block;
+          font-weight: 400;
+          font-size: 1.4rem;
+          border-radius: 2.5rem;
+          background-color: $color-primary;
+          margin-left: 0.5rem;
+          padding: 0.7rem 1.2rem;
+          color: rgba($color-dark, 0.7);
+
+          .correct-choice {
+            color: $color-light;
+          }
+        }
+
+        &-map {
+          height: 25rem;
+        }
 
         &:not(:last-child) {
-          margin-right: 1rem;
-        }
-      }
-
-      &__multiple {
-        display: inline-block;
-        font-weight: 400;
-        font-size: 1.4rem;
-        border-radius: 2.5rem;
-        background-color: $color-primary;
-        margin-left: 0.5rem;
-        padding: 0.7rem 1.2rem;
-        color: rgba($color-dark, 0.7);
-
-        .correct-choice {
-          color: $color-light;
+          margin-bottom: 1.5rem;
         }
       }
     }
 
-    .neighbours {
-      padding: 0 3rem;
-      @include flex-center(flex-start);
-      flex-wrap: wrap;
+    // .neighbours {
+    //   padding: 0 3rem;
+    //   @include flex-center(flex-start);
+    //   flex-wrap: wrap;
 
-      .neighbour {
-        flex: 0 0 50%;
-      }
-    }
+    //   .neighbour {
+    //     flex: 0 0 50%;
+    //   }
+    // }
   }
 }
