@@ -1,7 +1,7 @@
 import { formatPopulation } from '../../helper';
 import LeafletMap from './LeafletMap';
 
-function Country({ selectedCountry }) {
+function Country({ selectedCountry, neighbours }) {
   const {
     flag,
     area,
@@ -18,12 +18,13 @@ function Country({ selectedCountry }) {
     timeZones,
     startOfWeek,
     topLevelDomain,
-    // neighbours,
   } = selectedCountry;
 
   const [currency] = Object.values(selectedCountry.currency);
   const languages = Object.values(selectedCountry.languages);
   const checkSide = carSide;
+
+  console.log(neighbours);
 
   return (
     <div className="country">
@@ -156,16 +157,6 @@ function Country({ selectedCountry }) {
           <div className=" neighbours">
             <div className="neighbour">
               <p>Canada</p>
-              <p>Language: English</p>
-              <p>Population: 37 million</p>
-            </div>
-            <div className="neighbour">
-              <p>Panama</p>
-              <p>Language: English</p>
-              <p>Population: 37 million</p>
-            </div>
-            <div className="neighbour">
-              <p>Mexico</p>
               <p>Language: English</p>
               <p>Population: 37 million</p>
             </div>

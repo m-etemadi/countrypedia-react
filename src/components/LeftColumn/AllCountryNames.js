@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getJSON } from '../../helper';
 import { ALL_COUNTRIES_URL } from '../../config';
-import List from './List';
+import CountryName from './CountryName';
 import SortOptions from './SortOptions';
 
-function CountryList({
-  selectedCountry,
-  onSelectCountry,
-  onSetLoading,
-  onSetError,
-}) {
+function AllCountryNames({ selectedCountry, fetchCountry }) {
   const [allNames, setAllNames] = useState([]);
   const [sortedBy, setSortedBy] = useState('A');
 
@@ -33,10 +28,10 @@ function CountryList({
 
   useEffect(() => {
     fetchAllNames();
-  }, []);
+  });
 
   return (
-    <aside className="country-list">
+    <>
       <div className="sort">
         <p>Sort Alphabetically</p>
         <select value={sortedBy} onChange={e => setSortedBy(e.target.value)}>
@@ -48,19 +43,17 @@ function CountryList({
       <div className="list">
         <ul>
           {sortedCountries.map(country => (
-            <List
+            <CountryName
               country={country}
               key={country}
               selectedCountry={selectedCountry}
-              onSelectCountry={onSelectCountry}
-              onSetLoading={onSetLoading}
-              onSetError={onSetError}
+              fetchCountry={fetchCountry}
             />
           ))}
         </ul>
       </div>
-    </aside>
+    </>
   );
 }
 
-export default CountryList;
+export default AllCountryNames;

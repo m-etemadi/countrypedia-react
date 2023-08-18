@@ -25,7 +25,6 @@ export function countryObj(data) {
     timeZones: data?.timezones,
     startOfWeek: data?.startOfWeek,
     topLevelDomain: data?.tld?.[0],
-    neighbours: data?.borders,
   };
 
   return countryData;

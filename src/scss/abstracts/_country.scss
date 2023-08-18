@@ -107,6 +107,7 @@
 
         &-map {
           height: 25rem;
+          z-index: 1;
         }
 
         &:not(:last-child) {
