@@ -10,6 +10,7 @@
     position: relative;
     height: 30rem;
     margin: 0 -4rem 3rem -4rem;
+    padding: 0 1.5rem;
 
     img {
       @include position(absolute, 0, 0);

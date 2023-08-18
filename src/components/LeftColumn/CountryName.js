@@ -5,9 +5,7 @@ function CountryName({ country, selectedCountry, fetchCountry }) {
     <li
       className={country === selectedCountry?.commonName ? 'active' : ''}
       title={country}
-      onClick={() =>
-        fetchCountry(country === 'Antarctica' ? 'Antarctic' : country)
-      }
+      onClick={() => fetchCountry(country)}
     >
       {country.length > 20 ? formatCountryName(country) : country}
     </li>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { COUNTRY_URL } from '../config';
 import { countryObj, getJSON } from '../helper';
 
@@ -20,6 +20,18 @@ export function useCountry() {
       setIsLoading(false);
     }
   }
+
+  useEffect(
+    function () {
+      if (!activeCountry) return;
+      document.title = `CountryPedia | ${activeCountry.commonName}`;
+
+      return function () {
+        document.title = 'MoviePedia';
+      };
+    },
+    [activeCountry]
+  );
 
   return {
     isLoading,

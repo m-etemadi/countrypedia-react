@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import { formatPopulation } from '../../helper';
 import LeafletMap from './LeafletMap';
 
-function Country({ selectedCountry, neighbours }) {
+function Country({ selectedCountry }) {
   const {
     flag,
     area,
@@ -24,7 +25,9 @@ function Country({ selectedCountry, neighbours }) {
   const languages = Object.values(selectedCountry.languages);
   const checkSide = carSide;
 
-  console.log(neighbours);
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <div className="country">

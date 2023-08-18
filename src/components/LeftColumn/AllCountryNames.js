@@ -17,7 +17,10 @@ function AllCountryNames({ selectedCountry, fetchCountry }) {
       const data = await getJSON(`${ALL_COUNTRIES_URL}`);
 
       const allNames = data
-        .filter(country => country.population > 0)
+        .filter(
+          country =>
+            country.population > 0 && country.name.common !== 'Antarctica'
+        )
         .map(country => country.name.common)
         .sort();
       setAllNames(allNames);
@@ -28,7 +31,7 @@ function AllCountryNames({ selectedCountry, fetchCountry }) {
 
   useEffect(() => {
     fetchAllNames();
-  });
+  }, []);
 
   return (
     <>

@@ -12,8 +12,7 @@ import Country from './RightColumn/Country';
 
 export default function App() {
   const { isLoading, error, activeCountry, fetchCountry } = useCountry();
-
-  const selectedCountry = activeCountry;
+  let selectedCountry = activeCountry;
 
   return (
     <div>
