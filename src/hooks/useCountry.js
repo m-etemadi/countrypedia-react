@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { COUNTRY_URL } from '../config';
-import { countryObj, getJSON, correctName } from '../helper';
+import { countryObj, getJSON } from '../helper';
 
 export function useCountry() {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +12,7 @@ export function useCountry() {
       setIsLoading(true);
       setError('');
 
-      const data = await getJSON(`${COUNTRY_URL}${correctName(value)}`);
+      const data = await getJSON(`${COUNTRY_URL}${value}?fullText=true`);
       setActiveCountry(countryObj(data.at(0)));
     } catch (err) {
       setError(err.message);
