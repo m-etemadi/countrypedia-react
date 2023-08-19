@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { COUNTRY_URL } from '../config';
-import { countryObj, getJSON } from '../helper';
+import { countryObj, getJSON, correctName } from '../helper';
 
 export function useCountry() {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,10 +12,11 @@ export function useCountry() {
       setIsLoading(true);
       setError('');
 
-      const data = await getJSON(`${COUNTRY_URL}${value}`);
+      const data = await getJSON(`${COUNTRY_URL}${correctName(value)}`);
       setActiveCountry(countryObj(data.at(0)));
     } catch (err) {
       setError(err.message);
+      setActiveCountry(null);
     } finally {
       setIsLoading(false);
     }
@@ -27,7 +28,7 @@ export function useCountry() {
       document.title = `CountryPedia | ${activeCountry.commonName}`;
 
       return function () {
-        document.title = 'MoviePedia';
+        document.title = 'CountryPedia';
       };
     },
     [activeCountry]
@@ -37,6 +38,7 @@ export function useCountry() {
     isLoading,
     error,
     activeCountry,
+    setActiveCountry,
     fetchCountry,
   };
 }

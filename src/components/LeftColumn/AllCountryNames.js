@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getJSON } from '../../helper';
-import { ALL_COUNTRIES_URL } from '../../config';
+import { ALL_COUNTRIES_URL, REMOVED_COUNTRIES } from '../../config';
 import CountryName from './CountryName';
 import SortOptions from './SortOptions';
 
@@ -16,14 +16,16 @@ function AllCountryNames({ selectedCountry, fetchCountry }) {
     try {
       const data = await getJSON(`${ALL_COUNTRIES_URL}`);
 
-      const allNames = data
-        .filter(
-          country =>
-            country.population > 0 && country.name.common !== 'Antarctica'
-        )
+      const countryNames = data
         .map(country => country.name.common)
+        .filter(
+          function (e) {
+            return this.indexOf(e) < 0;
+          },
+          [...REMOVED_COUNTRIES]
+        )
         .sort();
-      setAllNames(allNames);
+      setAllNames(countryNames);
     } catch (err) {
       console.error(err.message);
     }

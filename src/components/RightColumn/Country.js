@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { formatPopulation } from '../../helper';
 import LeafletMap from './LeafletMap';
 
-function Country({ selectedCountry }) {
+function Country({ selectedCountry, onCloseCountry }) {
   const {
     flag,
     area,
@@ -33,6 +33,7 @@ function Country({ selectedCountry }) {
     <div className="country">
       <header className="country__header">
         <img src={flag} alt={commonName} />
+
         <div className="country__header-text">
           <h1>{commonName}</h1>
           <div className="short-info">
@@ -40,6 +41,8 @@ function Country({ selectedCountry }) {
             <p>Capital: {capitalCity}</p>
           </div>
         </div>
+
+        <button onClick={onCloseCountry}>&larr;</button>
       </header>
 
       <div className="country__data">
@@ -96,7 +99,7 @@ function Country({ selectedCountry }) {
           <div className="data__row">
             <span className="data__row-label">Currency:</span>
             <span className="data__row-content">
-              {currency.name} ({currency.symbol})
+              {currency.name} ({currency.symbol ? currency.symbol : 'N/A'})
             </span>
           </div>
           <div className="data__row">

@@ -1,4 +1,4 @@
-import { formatCountryName } from '../../helper';
+import { reduceNameLength } from '../../helper';
 
 function CountryName({ country, selectedCountry, fetchCountry }) {
   return (
@@ -7,7 +7,7 @@ function CountryName({ country, selectedCountry, fetchCountry }) {
       title={country}
       onClick={() => fetchCountry(country)}
     >
-      {country.length > 20 ? formatCountryName(country) : country}
+      {country.length > 20 ? reduceNameLength(country) : country}
     </li>
   );
 }

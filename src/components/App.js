@@ -11,8 +11,13 @@ import RightColumn from './RightColumn/RightColumn';
 import Country from './RightColumn/Country';
 
 export default function App() {
-  const { isLoading, error, activeCountry, fetchCountry } = useCountry();
+  const { isLoading, error, activeCountry, setActiveCountry, fetchCountry } =
+    useCountry();
   let selectedCountry = activeCountry;
+
+  function handleCloseCountry() {
+    setActiveCountry(null);
+  }
 
   return (
     <div>
@@ -33,7 +38,10 @@ export default function App() {
           {!isLoading && !error && (
             <>
               {selectedCountry ? (
-                <Country selectedCountry={selectedCountry} />
+                <Country
+                  selectedCountry={selectedCountry}
+                  onCloseCountry={handleCloseCountry}
+                />
               ) : (
                 <ErrorMessage message={'Start by searching for a country.'} />
               )}

@@ -36,17 +36,41 @@ export function formatPopulation(population) {
   return formattedPopulation;
 }
 
-export function formatCountryName(country) {
+export function reduceNameLength(country) {
   return country.slice(0, 20) + '...';
 }
 
-const timeout = function (s) {
+export function correctName(country) {
+  const toLowerName = country.toLowerCase();
+
+  switch (toLowerName) {
+    case 'iran':
+      return 'Islamic Republic of Iran';
+
+    case 'oman':
+      return 'Sultanate of Oman';
+
+    case 'mali':
+      return 'Republic of Mali';
+
+    case 'netherlands':
+      return 'Kingdom of the Netherlands';
+
+    case 'sudan':
+      return 'Republic of the Sudan';
+
+    default:
+      return toLowerName;
+  }
+}
+
+function timeout(s) {
   return new Promise(function (_, reject) {
     setTimeout(function () {
       reject(new Error(`Loading failed! Please try again`));
     }, s * 1000);
   });
-};
+}
 
 export async function getJSON(url, errorMsg = 'Country NOT found!') {
   try {
