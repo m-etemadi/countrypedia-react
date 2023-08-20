@@ -1,6 +1,6 @@
 # Countrypedia
 
-The Country Data App is a simple web application built using React.js that allows users to explore information about more than 200 countries. The app provides details such as flag, population, currency, language, and more for each selected country.
+The CountryPedia App is a simple web application built using React.js that allows users to explore information about more than 200 countries. The app provides details such as flag, population, currency, language, and more for each selected country.
 
 ## Features
 
