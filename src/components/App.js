@@ -20,7 +20,7 @@ export default function App() {
   }
 
   return (
-    <div>
+    <>
       <Header>
         <Logo />
         <Search fetchCountry={fetchCountry}></Search>
@@ -43,12 +43,12 @@ export default function App() {
                   onCloseCountry={handleCloseCountry}
                 />
               ) : (
-                <ErrorMessage message={'Start by searching for a country.'} />
+                <ErrorMessage message="Start by searching for a country." />
               )}
             </>
           )}
         </RightColumn>
       </Main>
-    </div>
+    </>
   );
 }

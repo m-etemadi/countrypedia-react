@@ -36,6 +36,10 @@
   }
 
   .list {
+    .message {
+      padding: 0 1.5rem;
+    }
+
     li {
       text-transform: uppercase;
       padding: 2rem 3rem;

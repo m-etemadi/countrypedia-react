@@ -3,10 +3,14 @@ import { getJSON } from '../../helper';
 import { ALL_COUNTRIES_URL, REMOVED_COUNTRIES } from '../../config';
 import CountryName from './CountryName';
 import SortOptions from './SortOptions';
+import Loader from '../Loader';
+import ErrorMessage from '../ErrorMessage';
 
 function AllCountryNames({ selectedCountry, fetchCountry }) {
   const [allNames, setAllNames] = useState([]);
   const [sortedBy, setSortedBy] = useState('A');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const sortedCountries = allNames.filter(country =>
     country.startsWith(sortedBy)
@@ -14,6 +18,7 @@ function AllCountryNames({ selectedCountry, fetchCountry }) {
 
   async function fetchAllNames() {
     try {
+      setIsLoading(true);
       const data = await getJSON(`${ALL_COUNTRIES_URL}`);
 
       const countryNames = data
@@ -27,7 +32,9 @@ function AllCountryNames({ selectedCountry, fetchCountry }) {
         .sort();
       setAllNames(countryNames);
     } catch (err) {
-      console.error(err.message);
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -46,16 +53,20 @@ function AllCountryNames({ selectedCountry, fetchCountry }) {
       </div>
 
       <div className="list">
-        <ul>
-          {sortedCountries.map(country => (
-            <CountryName
-              country={country}
-              key={country}
-              selectedCountry={selectedCountry}
-              fetchCountry={fetchCountry}
-            />
-          ))}
-        </ul>
+        {isLoading && <Loader />}
+        {error && <ErrorMessage message="Please reload the page." />}
+        {!isLoading && !error && (
+          <ul>
+            {sortedCountries.map(country => (
+              <CountryName
+                country={country}
+                key={country}
+                selectedCountry={selectedCountry}
+                fetchCountry={fetchCountry}
+              />
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );
