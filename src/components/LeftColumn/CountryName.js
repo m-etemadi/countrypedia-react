@@ -7,7 +7,7 @@ function CountryName({ country, selectedCountry, fetchCountry }) {
       title={country}
       onClick={() => fetchCountry(country)}
     >
-      {country.length > 20 ? reduceNameLength(country) : country}
+      {reduceNameLength(country)}
     </li>
   );
 }

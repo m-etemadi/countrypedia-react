@@ -5,10 +5,12 @@ import Slider from './Slider';
 import Loader from '../../Loader';
 import ErrorMessage from '../../ErrorMessage';
 
-function Neighbours({ borders, fetchCountry }) {
+function Neighbours({ selectedCountry, fetchCountry }) {
   const [neighbours, setNeighbours] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const { borders, commonName } = selectedCountry;
 
   useEffect(() => {
     if (!borders) return;
@@ -35,12 +37,18 @@ function Neighbours({ borders, fetchCountry }) {
 
   return (
     <article>
+      <h3 className="heading__primary">Neighbours</h3>
       {isLoading && <Loader />}
       {error && <ErrorMessage message={error} />}
       {!isLoading && !error && (
         <>
-          <h3 className="heading__primary">Neighbours</h3>
-          <Slider neighbours={neighbours} fetchCountry={fetchCountry} />
+          {borders ? (
+            <Slider neighbours={neighbours} fetchCountry={fetchCountry} />
+          ) : (
+            <ErrorMessage
+              message={`${commonName} does NOT have any land border!`}
+            />
+          )}
         </>
       )}
     </article>

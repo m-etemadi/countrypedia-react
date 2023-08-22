@@ -4,17 +4,17 @@ export function countryObj(data) {
   const countryData = {
     flag: data?.flags?.png,
     area: data?.area,
-    continent: data?.continents?.[0],
+    continent: data?.continents?.at(0),
     coords: {
-      lat: data?.latlng?.[0],
-      lng: data?.latlng?.[1],
+      lat: data?.latlng?.at(0),
+      lng: data?.latlng?.at(1),
     },
     officialName: data?.name.official,
     commonName: data?.name.common,
-    capitalCity: data?.capital?.[0],
+    capitalCity: data?.capital?.at(0),
     capitalCoords: {
-      lat: data?.capitalInfo?.latlng?.[0],
-      lng: data?.capitalInfo?.latlng?.[1],
+      lat: data?.capitalInfo?.latlng?.at(0),
+      lng: data?.capitalInfo?.latlng?.at(1),
     },
     population: data?.population,
     languages: data?.languages,
@@ -24,7 +24,7 @@ export function countryObj(data) {
     unMember: data?.unMember,
     timeZones: data?.timezones,
     startOfWeek: data?.startOfWeek,
-    topLevelDomain: data?.tld?.[0],
+    topLevelDomain: data?.tld?.at(0),
     borders: data?.borders,
   };
 
@@ -35,8 +35,8 @@ export function neighboursObj(data) {
   const neighboursData = {
     flag: data?.flags?.png,
     commonName: data?.name?.common,
-    continent: data?.continents?.[0],
-    capitalCity: data?.capital?.[0],
+    continent: data?.continents?.at(0),
+    capitalCity: data?.capital?.at(0),
     population: data?.population,
     language: data?.languages,
   };
@@ -51,7 +51,8 @@ export function formatPopulation(population) {
 }
 
 export function reduceNameLength(country) {
-  return country.slice(0, 20) + '...';
+  const max = 20;
+  return country.length > max ? `${country.slice(0, max)} ...` : country;
 }
 
 function timeout(s) {

@@ -1,4 +1,4 @@
-import { formatPopulation } from '../../../helper';
+import { formatPopulation, reduceNameLength } from '../../../helper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 
@@ -22,7 +22,9 @@ function Slider({ neighbours, fetchCountry }) {
         >
           <img src={neighbour.flag} alt={neighbour.commonName} />
           <div className="neighbour__data">
-            <h3 className="neighbour__name">{neighbour.commonName}</h3>
+            <h3 className="neighbour__name">
+              {reduceNameLength(neighbour.commonName)}
+            </h3>
             <h4 className="neighbour__region">{neighbour.continent}</h4>
             <p className="neighbour__row">
               <span>🏛️</span>
@@ -34,7 +36,7 @@ function Slider({ neighbours, fetchCountry }) {
             </p>
             <p className="neighbour__row">
               <span>🗣️</span>
-              {Object.values(neighbour.language)[0]}
+              {Object.values(neighbour.language).at(0)}
             </p>
           </div>
         </SwiperSlide>
