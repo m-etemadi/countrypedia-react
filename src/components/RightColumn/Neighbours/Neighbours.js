@@ -36,7 +36,7 @@ function Neighbours({ selectedCountry, fetchCountry }) {
   }, [borders]);
 
   return (
-    <article>
+    <article className="data-neighbours">
       <h3 className="heading__primary">Neighbours</h3>
       {isLoading && <Loader />}
       {error && <ErrorMessage message={error} />}
