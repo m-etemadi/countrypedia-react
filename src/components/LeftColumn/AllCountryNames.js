@@ -16,29 +16,29 @@ function AllCountryNames({ selectedCountry, fetchCountry }) {
     country.startsWith(sortedBy)
   );
 
-  async function fetchAllNames() {
-    try {
-      setIsLoading(true);
-      const data = await getJSON(`${ALL_COUNTRIES_URL}`);
-
-      const countryNames = data
-        .map(country => country.name.common)
-        .filter(
-          function (e) {
-            return this.indexOf(e) < 0;
-          },
-          [...REMOVED_COUNTRIES]
-        )
-        .sort();
-      setAllNames(countryNames);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
   useEffect(() => {
+    async function fetchAllNames() {
+      try {
+        setIsLoading(true);
+        const data = await getJSON(`${ALL_COUNTRIES_URL}`);
+
+        const countryNames = data
+          .map(country => country.name.common)
+          .filter(
+            function (e) {
+              return this.indexOf(e) < 0;
+            },
+            [...REMOVED_COUNTRIES]
+          )
+          .sort();
+        setAllNames(countryNames);
+      } catch {
+        setError('Failed to fetch data!');
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
     fetchAllNames();
   }, []);
 
@@ -54,7 +54,7 @@ function AllCountryNames({ selectedCountry, fetchCountry }) {
 
       <div className="list">
         {isLoading && <Loader />}
-        {error && <ErrorMessage message="Please reload the page." />}
+        {error && <ErrorMessage message={error} />}
         {!isLoading && !error && (
           <ul>
             {sortedCountries.map(country => (

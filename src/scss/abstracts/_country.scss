@@ -50,20 +50,6 @@
         }
       }
     }
-
-    button {
-      font-family: sans-serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      @include flex-center(center);
-      @include position(absolute, 1.5rem, 1.5rem);
-      z-index: 3;
-      width: 3rem;
-      height: 3rem;
-      border: none;
-      border-radius: 50%;
-      background-color: $color-light;
-    }
   }
 
   &__data {
@@ -72,18 +58,16 @@
       margin-bottom: 3rem;
     }
 
+    .message {
+      margin-top: 5rem !important;
+    }
+
     .data {
       border-width: 0.1rem;
       border-style: solid;
       background-color: $color-light;
       padding: 2rem;
       text-transform: capitalize;
-
-      h3 {
-        font-weight: 500;
-        text-align: center;
-        margin-bottom: 4rem;
-      }
 
       &__row {
         &-flag {
@@ -130,15 +114,5 @@
         }
       }
     }
-
-    // .neighbours {
-    //   padding: 0 3rem;
-    //   @include flex-center(flex-start);
-    //   flex-wrap: wrap;
-
-    //   .neighbour {
-    //     flex: 0 0 50%;
-    //   }
-    // }
   }
 }

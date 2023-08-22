@@ -25,9 +25,23 @@ export function countryObj(data) {
     timeZones: data?.timezones,
     startOfWeek: data?.startOfWeek,
     topLevelDomain: data?.tld?.[0],
+    borders: data?.borders,
   };
 
   return countryData;
+}
+
+export function neighboursObj(data) {
+  const neighboursData = {
+    flag: data?.flags?.png,
+    commonName: data?.name?.common,
+    continent: data?.continents?.[0],
+    capitalCity: data?.capital?.[0],
+    population: data?.population,
+    language: data?.languages,
+  };
+
+  return neighboursData;
 }
 
 export function formatPopulation(population) {
@@ -48,7 +62,7 @@ function timeout(s) {
   });
 }
 
-export async function getJSON(url, errorMsg = 'Country NOT found!') {
+export async function getJSON(url, errorMsg = 'Data NOT found!') {
   try {
     const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
     const data = await res.json();

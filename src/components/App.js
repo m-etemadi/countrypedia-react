@@ -8,7 +8,7 @@ import Main from './Main';
 import LeftColumn from './LeftColumn/LeftColumn';
 import AllCountryNames from './LeftColumn/AllCountryNames';
 import RightColumn from './RightColumn/RightColumn';
-import Country from './RightColumn/Country';
+import Country from './RightColumn/Country/Country';
 
 export default function App() {
   const { isLoading, error, activeCountry, setActiveCountry, fetchCountry } =
@@ -40,6 +40,7 @@ export default function App() {
               {selectedCountry ? (
                 <Country
                   selectedCountry={selectedCountry}
+                  fetchCountry={fetchCountry}
                   onCloseCountry={handleCloseCountry}
                 />
               ) : (
