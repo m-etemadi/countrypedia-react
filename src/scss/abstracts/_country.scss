@@ -25,7 +25,11 @@
       flex-direction: column;
       @include position(absolute, 0, 0);
       z-index: 2;
-      background: rgba($color-dark, 0.8);
+      background: radial-gradient(
+        circle,
+        rgba($color-dark, 0.8) 0%,
+        rgba($color-dark, 1) 100%
+      );
       color: $color-light;
       width: 100%;
       height: 100%;

@@ -11,7 +11,7 @@ function Slider({ neighbours, fetchCountry }) {
       className=" neighbours"
       modules={[Pagination]}
       pagination={{ clickable: true }}
-      spaceBetween={20}
+      spaceBetween={15}
       slidesPerView={3}
     >
       {neighbours.map((neighbour, i) => (

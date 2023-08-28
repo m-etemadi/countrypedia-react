@@ -15,7 +15,7 @@ export function useCountry() {
       const data = await getJSON(`${COUNTRY_URL}${value}?fullText=true`);
       setActiveCountry(countryObj(data.at(0)));
     } catch {
-      setError('Failed to fetch data!');
+      setError('Country NOT found!');
       setActiveCountry(null);
     } finally {
       setIsLoading(false);
