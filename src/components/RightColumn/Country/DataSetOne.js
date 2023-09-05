@@ -1,5 +1,9 @@
-function DataSetOne({ selectedCountry, className }) {
-  const { flag, commonName, continent, area, coords } = selectedCountry;
+import { useCountries } from '../../../context/CountriesContext';
+
+function DataSetOne({ className }) {
+  const {
+    selectedCountry: { flag, commonName, continent, area, coords },
+  } = useCountries();
 
   return (
     <article className={`data ${className}`} id="data-set-1">

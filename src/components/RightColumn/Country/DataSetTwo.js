@@ -1,6 +1,9 @@
-function DataSetTwo({ selectedCountry, className }) {
-  const { officialName, commonName, capitalCity, capitalCoords } =
-    selectedCountry;
+import { useCountries } from '../../../context/CountriesContext';
+
+function DataSetTwo({ className }) {
+  const {
+    selectedCountry: { officialName, commonName, capitalCity, capitalCoords },
+  } = useCountries();
 
   return (
     <article className={`data ${className}`} id="data-set-2">

@@ -1,6 +1,6 @@
 import icons from '../img/icons.svg';
 
-function ErrorMessage({ message }) {
+function Message({ message }) {
   return (
     <div className="message">
       <div>
@@ -13,4 +13,4 @@ function ErrorMessage({ message }) {
   );
 }
 
-export default ErrorMessage;
+export default Message;

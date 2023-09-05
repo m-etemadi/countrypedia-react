@@ -1,34 +1,73 @@
-import { useEffect, useState } from 'react';
-import { getJSON, neighboursObj } from '../../../helper';
+import { useCountries } from '../../../context/CountriesContext';
+import { useEffect, useReducer } from 'react';
+import { getJSON, neighboursObj } from '../../../helpers';
 import { NEIGHBOUR_URL } from '../../../config';
 import Slider from './Slider';
-import Loader from '../../Loader';
-import ErrorMessage from '../../ErrorMessage';
+import Spinner from '../../Spinner';
+import Message from '../../Message';
 
-function Neighbours({ selectedCountry, fetchCountry }) {
-  const [neighbours, setNeighbours] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+const initialState = {
+  neighbours: [],
+  neighboursLoading: false,
+  neighboursError: '',
+};
 
-  const { borders, commonName } = selectedCountry;
+function reducer(state, action) {
+  switch (action.type) {
+    case 'neighbours/loading':
+      return { ...state, neighboursLoading: true, neighboursError: '' };
+
+    case 'neighbours/loaded':
+      return {
+        ...state,
+        neighboursLoading: false,
+        neighbours: action.payload,
+      };
+
+    case 'neighbours/rejected':
+      return {
+        ...state,
+        neighboursLoading: false,
+        neighboursError: action.payload,
+        neighbours: [],
+      };
+
+    default:
+      throw new Error('Unknown action type');
+  }
+}
+
+function Neighbours() {
+  const {
+    selectedCountry: { borders, commonName },
+  } = useCountries();
+
+  const [{ neighbours, neighboursLoading, neighboursError }, dispatch] =
+    useReducer(reducer, initialState);
 
   useEffect(() => {
     if (!borders) return;
 
     async function fetchNeighbours() {
+      dispatch({ type: 'neighbours/loading' });
+
       try {
-        setIsLoading(true);
         const neighboursArr = [];
 
         for (const n of borders) {
           let data = await getJSON(`${NEIGHBOUR_URL}${n}`);
           neighboursArr.push(neighboursObj(data.at(0)));
+
+          dispatch({
+            type: 'neighbours/loaded',
+            payload: neighboursArr,
+          });
         }
-        setNeighbours(neighboursArr);
       } catch {
-        setError('Failed to fetch data!');
-      } finally {
-        setIsLoading(false);
+        dispatch({
+          type: 'neighbours/rejected',
+          payload: 'Failed to fetch data!',
+        });
       }
     }
 
@@ -38,18 +77,14 @@ function Neighbours({ selectedCountry, fetchCountry }) {
   return (
     <article className="data-neighbours">
       <h3 className="heading__primary">Neighbours</h3>
-      {isLoading && <Loader />}
-      {error && <ErrorMessage message={error} />}
-      {!isLoading && !error && (
-        <>
-          {borders ? (
-            <Slider neighbours={neighbours} fetchCountry={fetchCountry} />
-          ) : (
-            <ErrorMessage
-              message={`${commonName} does NOT have any land border!`}
-            />
-          )}
-        </>
+
+      {neighboursLoading && <Spinner />}
+      {neighboursError && <Message message={neighboursError} />}
+
+      {borders ? (
+        <Slider neighbours={neighbours} />
+      ) : (
+        <Message message={`${commonName} does NOT have any land border!`} />
       )}
     </article>
   );

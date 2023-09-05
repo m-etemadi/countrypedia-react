@@ -1,7 +1,11 @@
-import { formatPopulation } from '../../../helper';
+import { useCountries } from '../../../context/CountriesContext';
+import { formatPopulation } from '../../../helpers';
 
-function Header({ selectedCountry, onCloseCountry }) {
-  const { flag, commonName, population, capitalCity } = selectedCountry;
+function Header() {
+  const {
+    selectedCountry: { flag, commonName, population, capitalCity },
+    onCloseCountry,
+  } = useCountries();
 
   return (
     <header className="country__header">

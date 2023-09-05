@@ -1,41 +1,33 @@
-import { useEffect } from 'react';
+import { useCountries } from '../../../context/CountriesContext';
+import Spinner from '../../Spinner';
+import Message from '../../Message';
 import Header from './Header';
-import LeafletMap from './LeafletMap';
-import Neighbours from '../Neighbours/Neighbours';
 import DataSetOne from './DataSetOne';
 import DataSetTwo from './DataSetTwo';
 import DataSetThree from './DataSetThree';
 import DataSetFour from './DataSetFour';
+import Map from './Map';
+import Neighbours from '../Neighbours/Neighbours';
 
-function Country({ selectedCountry, fetchCountry, onCloseCountry }) {
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, []);
+function Country() {
+  const { countryLoading, countryError, selectedCountry } = useCountries();
+
+  if (countryLoading) return <Spinner />;
+  if (countryError) return <Message message={countryError} />;
+  if (!selectedCountry)
+    return <Message message="Start by searching for a country." />;
 
   return (
     <div className="country">
-      <Header
-        selectedCountry={selectedCountry}
-        onCloseCountry={onCloseCountry}
-      />
+      <Header />
 
       <div className="country__data">
-        <DataSetOne
-          selectedCountry={selectedCountry}
-          className="purple-light"
-        />
-        <DataSetTwo selectedCountry={selectedCountry} className="purple" />
-        <DataSetThree
-          selectedCountry={selectedCountry}
-          className="purple-dark"
-        />
-        <DataSetFour selectedCountry={selectedCountry} className="yellow" />
-        <LeafletMap selectedCountry={selectedCountry} />
-
-        <Neighbours
-          selectedCountry={selectedCountry}
-          fetchCountry={fetchCountry}
-        />
+        <DataSetOne className="purple-light" />
+        <DataSetTwo className="purple" />
+        <DataSetThree className="purple-dark" />
+        <DataSetFour className="yellow" />
+        <Map />
+        <Neighbours />
       </div>
     </div>
   );

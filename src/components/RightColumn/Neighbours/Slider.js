@@ -1,11 +1,14 @@
-import { formatPopulation, reduceNameLength } from '../../../helper';
+import { useCountries } from '../../../context/CountriesContext';
+import { formatPopulation, reduceNameLength } from '../../../helpers';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-function Slider({ neighbours, fetchCountry }) {
+function Slider({ neighbours }) {
+  const { fetchCountry } = useCountries();
+
   return (
     <Swiper
       className=" neighbours"

@@ -1,6 +1,6 @@
 import icons from '../img/icons.svg';
 
-function Loader() {
+function Spinner() {
   return (
     <div className="loader">
       <svg>
@@ -10,4 +10,4 @@ function Loader() {
   );
 }
 
-export default Loader;
+export default Spinner;

@@ -1,8 +1,10 @@
-import { formatPopulation } from '../../../helper';
+import { useCountries } from '../../../context/CountriesContext';
+import { formatPopulation } from '../../../helpers';
 
-function DataSetThree({ selectedCountry, className }) {
-  const { population, startOfWeek, currency, languages, carSide } =
-    selectedCountry;
+function DataSetThree({ className }) {
+  const {
+    selectedCountry: { population, startOfWeek, currency, languages, carSide },
+  } = useCountries();
 
   const [currencies] = Object.values(currency);
   const AllLanguages = Object.values(languages);

@@ -1,3 +1,4 @@
+import { useCountries } from '../../../context/CountriesContext';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -10,8 +11,10 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-function LeafletMap({ selectedCountry }) {
-  const { coords, commonName } = selectedCountry;
+function Map() {
+  const {
+    selectedCountry: { coords, commonName },
+  } = useCountries();
   const location = [coords.lat, coords.lng];
   const zoom = 5;
 
@@ -35,4 +38,4 @@ function LeafletMap({ selectedCountry }) {
   );
 }
 
-export default LeafletMap;
+export default Map;

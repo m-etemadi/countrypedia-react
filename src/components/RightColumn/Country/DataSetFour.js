@@ -1,5 +1,15 @@
-function DataSetFour({ selectedCountry, className }) {
-  const { timeZones, topLevelDomain, independent, unMember } = selectedCountry;
+import { useCountries } from '../../../context/CountriesContext';
+
+function DataSetFour({ className }) {
+  const {
+    selectedCountry: {
+      commonName,
+      timeZones,
+      topLevelDomain,
+      independent,
+      unMember,
+    },
+  } = useCountries();
 
   return (
     <article className={`data ${className}`} id="data-set-4">
@@ -16,7 +26,7 @@ function DataSetFour({ selectedCountry, className }) {
         <span className="data__row-content lower-case">{topLevelDomain}</span>
       </div>
       <div className="data__row">
-        <span className="data__row-label">Independant</span>
+        <span className="data__row-label">Independant:</span>
         <p className="data__row-multiple">
           <span className={independent ? 'correct-choice' : ''}>Yes</span>
           &nbsp;&nbsp;&nbsp;
@@ -24,12 +34,25 @@ function DataSetFour({ selectedCountry, className }) {
         </p>
       </div>
       <div className="data__row">
-        <span className="data__row-label">UN Member</span>
+        <span className="data__row-label">UN Member:</span>
         <p className="data__row-multiple">
           <span className={unMember ? 'correct-choice' : ''}>Yes</span>
           &nbsp;&nbsp;&nbsp;
           <span className={!unMember ? 'correct-choice' : ''}>No</span>
         </p>
+      </div>
+      <div className="data__row">
+        <span className="data__row-label">Learn More:</span>
+        <span className="data__row-content">
+          <a
+            href={`https://en.wikipedia.org/wiki/${commonName}`}
+            target="_blank"
+            rel="noreferrer"
+            title={commonName}
+          >
+            Check out {commonName} on Wikipedia →
+          </a>
+        </span>
       </div>
     </article>
   );

@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import icons from '../../img/icons.svg';
+import { useCountries } from '../../context/CountriesContext';
 
-function Search({ fetchCountry }) {
+function Search() {
+  const { fetchCountry } = useCountries();
+
   const [query, setQuery] = useState('');
 
   function handleSubmit(e) {

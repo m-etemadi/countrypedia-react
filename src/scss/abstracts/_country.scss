@@ -67,7 +67,6 @@
       border-style: solid;
       background-color: $color-light;
       padding: 2rem;
-      text-transform: capitalize;
 
       &__row {
         &-flag {
@@ -83,6 +82,10 @@
         &-content {
           display: inline-block;
           color: $color-dark-2;
+
+          a {
+            color: $color-primary-dark;
+          }
 
           &:not(:last-child) {
             margin-right: 1rem;

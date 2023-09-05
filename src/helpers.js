@@ -1,6 +1,6 @@
 import { TIMEOUT_SEC } from './config';
 
-export function countryObj(data) {
+function countryObj(data) {
   const countryData = {
     flag: data?.flags?.png,
     area: data?.area,
@@ -31,7 +31,7 @@ export function countryObj(data) {
   return countryData;
 }
 
-export function neighboursObj(data) {
+function neighboursObj(data) {
   const neighboursData = {
     flag: data?.flags?.png,
     commonName: data?.name?.common,
@@ -44,13 +44,17 @@ export function neighboursObj(data) {
   return neighboursData;
 }
 
-export function formatPopulation(population) {
+function scrollToTop() {
+  return window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+}
+
+function formatPopulation(population) {
   const maxDigit = { maximumFractionDigits: 0 };
   const formattedPopulation = population.toLocaleString(undefined, maxDigit);
   return formattedPopulation;
 }
 
-export function reduceNameLength(country) {
+function reduceNameLength(country) {
   const max = 20;
   return country.length > max ? `${country.slice(0, max)} ...` : country;
 }
@@ -63,7 +67,7 @@ function timeout(s) {
   });
 }
 
-export async function getJSON(url, errorMsg = 'Data NOT found!') {
+async function getJSON(url, errorMsg = 'Data NOT found!') {
   try {
     const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
     const data = await res.json();
@@ -73,3 +77,12 @@ export async function getJSON(url, errorMsg = 'Data NOT found!') {
     throw err;
   }
 }
+
+export {
+  countryObj,
+  neighboursObj,
+  scrollToTop,
+  formatPopulation,
+  reduceNameLength,
+  getJSON,
+};
