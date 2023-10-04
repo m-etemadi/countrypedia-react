@@ -1,11 +1,11 @@
-import { useCountries } from '../../context/CountriesContext';
+import { useCountriesList } from '../../context/CountriesListContext';
 import Spinner from '../Spinner';
 import Message from '../Message';
 import ListItem from './ListItem';
 
 function CountriesList() {
   const { sortedCountries, countriesListLoading, countriesListError } =
-    useCountries();
+    useCountriesList();
 
   if (countriesListLoading) return <Spinner />;
   if (countriesListError) return <Message message={countriesListError} />;

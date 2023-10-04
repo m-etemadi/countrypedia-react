@@ -1,8 +1,8 @@
-import { useCountries } from '../../context/CountriesContext';
+import { useCountriesList } from '../../context/CountriesListContext';
 import SortOptions from './SortOptions';
 
 function SortMenu() {
-  const { sortedBy, dispatch } = useCountries();
+  const { sortedBy, dispatch } = useCountriesList();
 
   return (
     <div className="sort">

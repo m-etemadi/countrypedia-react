@@ -1,4 +1,5 @@
 import { CountriesProvider } from '../context/CountriesContext';
+import { CountriesListProvider } from '../context/CountriesListContext';
 import Header from './Header/Header';
 import Logo from './Header/Logo';
 import Search from './Header/Search';
@@ -18,8 +19,10 @@ export default function App() {
       </Header>
       <Main>
         <LeftColumn>
-          <SortMenu />
-          <CountriesList />
+          <CountriesListProvider>
+            <SortMenu />
+            <CountriesList />
+          </CountriesListProvider>
         </LeftColumn>
         <RightColumn>
           <Country />
