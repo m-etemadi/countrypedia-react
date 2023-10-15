@@ -8,6 +8,7 @@ import DataSetThree from './DataSetThree';
 import DataSetFour from './DataSetFour';
 import Map from './Map';
 import Neighbours from '../Neighbours/Neighbours';
+import { NeighboursProvider } from '../../../context/NeighboursContext';
 
 function Country() {
   const { countryLoading, countryError, selectedCountry } = useCountries();
@@ -27,7 +28,9 @@ function Country() {
         <DataSetThree className="purple-dark" />
         <DataSetFour className="yellow" />
         <Map />
-        <Neighbours />
+        <NeighboursProvider>
+          <Neighbours />
+        </NeighboursProvider>
       </div>
     </div>
   );
