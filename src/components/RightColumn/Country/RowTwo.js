@@ -1,12 +1,12 @@
 import { useCountries } from '../../../context/CountriesContext';
 
-function DataSetTwo({ className }) {
+function RowTwo() {
   const {
     selectedCountry: { officialName, commonName, capitalCity, capitalCoords },
   } = useCountries();
 
   return (
-    <article className={`data ${className}`} id="data-set-2">
+    <article className={`data purple`} id="data-set-2">
       <div className="data__row">
         <span className="data__row-label">Official Name:</span>
         <span className="data__row-content">{officialName}</span>
@@ -32,4 +32,4 @@ function DataSetTwo({ className }) {
   );
 }
 
-export default DataSetTwo;
+export default RowTwo;

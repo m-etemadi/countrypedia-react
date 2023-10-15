@@ -1,7 +1,7 @@
 import { useCountries } from '../../../context/CountriesContext';
 import { formatPopulation } from '../../../helpers';
 
-function DataSetThree({ className }) {
+function RowThree() {
   const {
     selectedCountry: { population, startOfWeek, currency, languages, carSide },
   } = useCountries();
@@ -11,7 +11,7 @@ function DataSetThree({ className }) {
   const checkSide = carSide;
 
   return (
-    <article className={`data ${className}`} id="data-set-3">
+    <article className={`data purple-dark`} id="data-set-3">
       <div className="data__row">
         <span className="data__row-label">Language:</span>
         {AllLanguages.map(lang => (
@@ -48,4 +48,4 @@ function DataSetThree({ className }) {
   );
 }
 
-export default DataSetThree;
+export default RowThree;

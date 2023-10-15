@@ -1,12 +1,12 @@
 import { useCountries } from '../../../context/CountriesContext';
 
-function DataSetOne({ className }) {
+function RowOne() {
   const {
     selectedCountry: { flag, commonName, continent, area, coords },
   } = useCountries();
 
   return (
-    <article className={`data ${className}`} id="data-set-1">
+    <article className={`data purple-light`} id="data-set-1">
       <div className="data__row">
         <img className="data__row-flag" src={flag} alt={commonName} />
       </div>
@@ -27,4 +27,4 @@ function DataSetOne({ className }) {
   );
 }
 
-export default DataSetOne;
+export default RowOne;

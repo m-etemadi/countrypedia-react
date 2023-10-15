@@ -1,6 +1,6 @@
 import { useCountries } from '../../../context/CountriesContext';
 
-function DataSetFour({ className }) {
+function RowFour() {
   const {
     selectedCountry: {
       commonName,
@@ -12,7 +12,7 @@ function DataSetFour({ className }) {
   } = useCountries();
 
   return (
-    <article className={`data ${className}`} id="data-set-4">
+    <article className={`data yellow`} id="data-set-4">
       <div className="data__row">
         <span className="data__row-label">Time Zones:</span>
         {timeZones.map(times => (
@@ -58,4 +58,4 @@ function DataSetFour({ className }) {
   );
 }
 
-export default DataSetFour;
+export default RowFour;

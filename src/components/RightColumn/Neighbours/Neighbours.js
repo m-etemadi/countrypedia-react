@@ -15,6 +15,7 @@ function Neighbours() {
 
   useEffect(() => {
     if (!borders) return;
+
     fetchNeighbours(borders);
   }, [borders, fetchNeighbours]);
 
