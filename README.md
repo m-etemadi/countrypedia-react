@@ -22,8 +22,8 @@ You can try out a live demo of the application [here](https://countrypedia-etema
 
 To run the application locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/m-etemadi/countrypedia.git`
-2. Navigate to the project directory: `cd countrypedia`
+1. Clone the repository: `git clone https://github.com/m-etemadi/countrypedia-react.git`
+2. Navigate to the project directory: `cd countrypedia-react`
 3. Install the dependencies: `npm install`
 4. Start the development server: `npm start`
 5. Open your browser and visit `http://localhost:3000`
