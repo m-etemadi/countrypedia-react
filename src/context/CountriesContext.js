@@ -66,8 +66,6 @@ function CountriesProvider({ children }) {
         selectedCountry,
         fetchCountry,
         onCloseCountry: handleCloseCountry,
-
-        dispatch,
       }}
     >
       {children}

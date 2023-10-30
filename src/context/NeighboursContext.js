@@ -69,8 +69,6 @@ function NeighboursProvider({ children }) {
         neighboursLoading,
         neighboursError,
         fetchNeighbours,
-
-        dispatch,
       }}
     >
       {children}
